@@ -3,13 +3,9 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 
-export default function RelatedSelects() {
-  const [brand, setBrand] = React.useState('');
+export const RelatedSelects: React.FC<{ capabilities: { [key: string]: string[] } }> = ({ capabilities }) =>  {
+  const [brand, setBrand] = React.useState('(None)');
   const [model, setModel] = React.useState('');
-  const capabilities = {
-    'Volvo': ['C60', 'C90'],
-    'Lancia': ['Delta']
-  }
   const handleChangeBrand = (event: SelectChangeEvent) => {
     setBrand(event.target.value);
   };
@@ -26,27 +22,21 @@ export default function RelatedSelects() {
           value={brand}
           onChange={handleChangeBrand}
         >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
+          {Object.getOwnPropertyNames(capabilities).map((brand) => (
+            <MenuItem value={brand} key={brand}>{brand}</MenuItem>
+          ))}
         </Select>
       </FormControl>
-      <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+      <FormControl sx={{ m: 1, minWidth: 120 }} size="small" disabled={capabilities[brand].length === 0}>
         <Select
           labelId="demo-select-small-label"
           id="demo-select-small"
           value={model}
           onChange={handleChangeModel}
         >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
+          {capabilities[brand].map((model) => (
+            <MenuItem value={model} key={model}>{model}</MenuItem>
+          ))}
         </Select>
       </FormControl>
     </>
