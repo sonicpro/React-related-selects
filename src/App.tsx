@@ -2,7 +2,7 @@ import { RelatedSelects } from './Components/related-selects';
 import './App.css';
 
 function App() {
-  const capabilities: { [key: string]: string[] } = {
+  const capabilities: Record<string, string[]> = {
     '(None)': [],
     'Volvo': ['C60', 'C90'],
     'Lancia': ['Delta']
@@ -10,7 +10,7 @@ function App() {
 
   return (
     <div className="App">
-      <RelatedSelects capabilities={capabilities} />
+      <RelatedSelects capabilities={capabilities} label1="brand" label2="model" />
     </div>
   );
 }
