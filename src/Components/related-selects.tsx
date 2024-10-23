@@ -18,9 +18,10 @@ export const RelatedSelects: React.FC<{ capabilities: { [key: string]: string[] 
   return (
     <>
       <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-        <InputLabel id="demo-simple-select-label">{label1}</InputLabel>
+        <InputLabel id="demo-simple-select-label" htmlFor="demo-simple-select">{label1}</InputLabel>
         <Select
-          labelId="dmo-simple-select-label"
+          id="demo-simple-select"
+          labelId="demo-simple-select-label"
           value={brand}
           name="brand"
           onChange={handleChangeBrand}
@@ -31,8 +32,9 @@ export const RelatedSelects: React.FC<{ capabilities: { [key: string]: string[] 
         </Select>
       </FormControl>
       <FormControl sx={{ m: 1, minWidth: 120 }} size="small" disabled={capabilities[brand].length === 0}>
-        <InputLabel id="demo-select-small-label">{label2}</InputLabel>
+        <InputLabel id="demo-select-small-label" htmlFor="demo-select-small">{label2}</InputLabel>
         <Select
+          id="demo-select-small"
           labelId="demo-select-small-label"
           value={model}
           name="model"

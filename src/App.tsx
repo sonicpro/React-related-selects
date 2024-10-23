@@ -1,5 +1,5 @@
 import { RelatedSelects } from './Components/related-selects';
-import './App.css';
+// import './App.css';
 
 function App() {
   const capabilities: Record<string, string[]> = {
