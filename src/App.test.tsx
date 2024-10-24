@@ -1,10 +1,14 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, cleanup } from '@testing-library/react';
 import App from './App';
 
 describe('Application tests', () => {
-  it('renders select element', () => {
+  it('renders select element', async () => {
     render(<App />);
-    const selectElement = screen.getByLabelText('brand');
+    const selectElement = await screen.findByLabelText(/brand/i);
     expect(selectElement).toBeInTheDocument();
+  });
+
+  afterEach(() => {
+    cleanup();
   });
 });
